@@ -43,7 +43,6 @@ public class Donation implements Serializable {
     /**
      * 捐赠者的user_id
      */
-    @NotNull
     @JsonProperty(value = "user_id")
     private Integer userId;
 

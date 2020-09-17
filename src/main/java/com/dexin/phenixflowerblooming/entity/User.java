@@ -55,16 +55,6 @@ public class User implements Serializable {
     private String images;
 
     /**
-     * 是否贫困户，0-否，1-是
-     */
-    private Integer isPoverty;
-
-    /**
-     * 是否志愿者，0-否，1-是
-     */
-    private Integer isVolunteer;
-
-    /**
      * 是否管理员，0-否，1-是
      */
     private Integer isAdministrator;

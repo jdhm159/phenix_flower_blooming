@@ -1,4 +1,4 @@
-package com.dexin.phenixflowerblooming.controller;
+package com.dexin.phenixflowerblooming.dto;
 
 import lombok.Data;
 import javax.validation.constraints.NotBlank;

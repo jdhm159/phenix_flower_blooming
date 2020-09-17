@@ -4,8 +4,6 @@ import com.dexin.phenixflowerblooming.entity.User;
 import com.dexin.phenixflowerblooming.mapper.UserMapper;
 import com.dexin.phenixflowerblooming.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**

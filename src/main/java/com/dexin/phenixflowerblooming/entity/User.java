@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * <p>
  * 
@@ -32,21 +35,25 @@ public class User implements Serializable {
     /**
      * 用户名
      */
+    @NotNull
     private String username;
 
     /**
      * 密码（MD5加密）
      */
+    @NotNull
     private String password;
 
     /**
      * 姓名
      */
+    @NotBlank
     private String name;
 
     /**
      * 联系方式
      */
+    @NotBlank
     private String connect;
 
     /**

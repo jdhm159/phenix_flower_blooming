@@ -25,5 +25,4 @@ public class PovertyController {
         return Result.success("ok");
     }
 
-
 }

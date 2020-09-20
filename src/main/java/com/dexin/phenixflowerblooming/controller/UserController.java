@@ -11,6 +11,7 @@ import com.dexin.phenixflowerblooming.entity.User;
 import com.dexin.phenixflowerblooming.service.UserService;
 import com.dexin.phenixflowerblooming.util.JwtUtils;
 import com.dexin.phenixflowerblooming.util.Result;
+import com.dexin.phenixflowerblooming.util.Result.ErrCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.HashMap;
@@ -67,7 +68,7 @@ public class UserController {
         User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
         Assert.notNull(user, "用户不存在");
         if (!user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
-            return Result.error("密码错误！");
+            return Result.error(ErrCode.LOGIN_ERROR);
         }
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", user.getUsername());

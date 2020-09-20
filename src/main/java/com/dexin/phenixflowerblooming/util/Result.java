@@ -14,7 +14,8 @@ public class Result<T> {
 
     public enum ErrCode {
 
-        DONATION_MISSING(5021, "捐款异常，请稍后再试");
+        DONATION_MISSING(5021, "捐款异常，请稍后再试"),
+        LOGIN_ERROR(5022, "用户名或者密码错误");
 
         private Integer code;
         private String msg;

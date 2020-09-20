@@ -7,6 +7,7 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.context.annotation.Bean;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -35,19 +36,19 @@ public class User implements Serializable {
     /**
      * 用户名
      */
-    @NotNull
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     /**
      * 密码（MD5加密）
      */
-    @NotNull
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     /**
      * 姓名
      */
-    @NotBlank
+    @NotBlank(message="姓名不能为空")
     private String name;
 
     /**

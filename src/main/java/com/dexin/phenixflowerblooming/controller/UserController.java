@@ -53,9 +53,11 @@ public class UserController {
     @ApiOperation("注册用户")
     public Result logup( @RequestBody @Validated LoginDto loginDto) {
         User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
+
+        Assert.isTrue(loginDto.getUsername()!="","用户名不能为空");
+        Assert.isTrue(loginDto.getPassword()!="","密码不能为空");
         cn.hutool.core.lang.Assert.isNull(user, "用户名已存在");
-        Assert.isNull(loginDto.getUsername(),"用户名不能为空");
-        Assert.isNull(loginDto.getPassword(),"用户密码为空");
+
         user = new User();
         user.setUsername(loginDto.getUsername());
         user.setPassword(SecureUtil.md5(loginDto.getPassword()));

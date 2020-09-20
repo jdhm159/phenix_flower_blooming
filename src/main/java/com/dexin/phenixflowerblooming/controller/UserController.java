@@ -39,6 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 @Api(tags = "用户管理")
+@Validated
 public class UserController {
 
     @Autowired
@@ -50,7 +51,7 @@ public class UserController {
     // 注册
     @PostMapping("/logup")
     @ApiOperation("注册用户")
-    public Result logup(@Validated @RequestBody LoginDto loginDto) {
+    public Result logup( @RequestBody @Validated LoginDto loginDto) {
         User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
         cn.hutool.core.lang.Assert.isNull(user, "用户名已存在");
         user = new User();
@@ -64,7 +65,7 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/login")
     @ApiOperation("登录")
-    public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
+    public Result login(@RequestBody @Validated LoginDto loginDto, HttpServletResponse response) {
         User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
         Assert.notNull(user, "用户不存在");
         if (!user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {

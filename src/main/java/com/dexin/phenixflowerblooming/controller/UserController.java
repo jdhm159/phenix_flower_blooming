@@ -52,17 +52,16 @@ public class UserController {
     @PostMapping("/logup")
     @ApiOperation("注册用户")
     public Result logup( @RequestBody @Validated LoginDto loginDto) {
+        Assert.notBlank(loginDto.getUsername(),"用户名不能为空");
+        Assert.notBlank(loginDto.getPassword(),"密码不能为空");
         User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
-
-        Assert.isTrue(loginDto.getUsername()!="","用户名不能为空");
-        Assert.isTrue(loginDto.getPassword()!="","密码不能为空");
-        cn.hutool.core.lang.Assert.isNull(user, "用户名已存在");
+        Assert.isNull(user, "用户名已存在");
 
         user = new User();
         user.setUsername(loginDto.getUsername());
         user.setPassword(SecureUtil.md5(loginDto.getPassword()));
         user.setGmtCreate(DateUtil.toLocalDateTime(DateUtil.date()));
-        cn.hutool.core.lang.Assert.isTrue(userService.save(user));
+        Assert.isTrue(userService.save(user), "注册失败，请重新注册");
         return Result.success();
     }
 
@@ -71,7 +70,7 @@ public class UserController {
     @ApiOperation("登录")
     public Result login(@RequestBody @Validated LoginDto loginDto, HttpServletResponse response) {
         User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
-        Assert.notNull(user, "用户不存在");
+//        Assert.notNull(user, "用户不存在");
         if (!user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
             return Result.error(ErrCode.LOGIN_ERROR);
         }

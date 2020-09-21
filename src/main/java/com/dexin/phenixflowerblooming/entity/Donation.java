@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import javax.validation.constraints.NotBlank;
 import lombok.Builder.Default;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,7 +38,8 @@ public class Donation implements Serializable {
     /**
      * 捐赠者姓名
      */
-    @NotNull
+    @NotNull()
+    @NotBlank(message = "姓名不能为空")
     private String name;
 
     /**
@@ -55,6 +57,7 @@ public class Donation implements Serializable {
      * 捐赠者手机号
      */
     @NotNull
+    @NotBlank(message = "姓名不能为空")
     private String connect;
 
     /**
